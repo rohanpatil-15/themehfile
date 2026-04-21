@@ -63,7 +63,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Mehfil The Cafe. All rights reserved.
           </p>
           <p className="text-gray-600 text-sm">
-            Designed and developed by <span className="text-brand-gold font-medium">skiimmmers</span> ❤️
+            Designed and developed by <span className="text-brand-gold font-medium">skimmers</span> ❤️
           </p>
         </div>
       </div>

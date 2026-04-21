@@ -64,9 +64,9 @@ export default function GallerySection() {
               <div className="absolute inset-0 border border-white/10 rounded-3xl m-3 pointer-events-none z-20 group-hover:border-brand-gold/40 transition-colors duration-700"></div>
 
               {/* Caption Overlay */}
-              <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-30">
-                <span className="text-white font-serif text-2xl font-bold">{item.title}</span>
-                <span className="text-brand-gold text-sm tracking-widest uppercase mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-200">
+              <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500 z-30">
+                <span className="text-white font-serif text-xl md:text-2xl font-bold">{item.title}</span>
+                <span className="text-brand-gold text-xs md:text-sm tracking-widest uppercase mt-1 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-700 delay-200">
                   Discover
                 </span>
               </div>

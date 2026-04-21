@@ -9,8 +9,17 @@ import { useCartStore } from "@/store/useCartStore";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { items, setIsOpen } = useCartStore();
   
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const cartItemCount = items.reduce((total, item) => total + item.quantity, 0);
 
   const navLinks = [
@@ -27,7 +36,10 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="fixed top-0 left-0 w-full z-50 bg-transparent py-6"
+        className={clsx(
+          "fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4 md:py-6",
+          isScrolled || isMobileMenuOpen ? "bg-brand-base/90 backdrop-blur-md border-b border-white/5 shadow-2xl" : "bg-transparent"
+        )}
       >
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
           {/* Logo */}
@@ -35,7 +47,7 @@ export default function Navbar() {
             <img 
               src="https://yeybeegdfejcniqhwbbd.supabase.co/storage/v1/object/sign/CAFE%20MEHFILE/361632236_675768737751341_8344602149402290112_n-removebg-preview.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lMWU1Nzc2Ny1lYmM0LTQ0MzgtYTE5Ny1hZTcyMTIxNGEzZGQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJDQUZFIE1FSEZJTEUvMzYxNjMyMjM2XzY3NTc2ODczNzc1MTM0MV84MzQ0NjAyMTQ5NDAyMjkwMTEyX24tcmVtb3ZlYmctcHJldmlldy5wbmciLCJpYXQiOjE3NzYyNjg1MTEsImV4cCI6MTg2MjU4MjExMX0.7rXp08RRyGHWB2C6_DdLBc3i1IOhYokXv9qrHb3g_nE" 
               alt="Mehfil The Cafe Logo" 
-              className="w-24 h-24 object-contain transition-transform group-hover:scale-110 duration-300"
+              className="w-16 h-16 md:w-24 md:h-24 object-contain transition-transform group-hover:scale-110 duration-300"
             />
           </Link>
 
@@ -126,7 +138,16 @@ export default function Navbar() {
                 </motion.li>
               ))}
             </ul>
-            <div className="mt-auto mb-10 mx-auto w-full max-w-xs">
+            <div className="mt-auto mb-10 mx-auto w-full max-w-xs space-y-4">
+              <button
+                onClick={() => {
+                   setIsMobileMenuOpen(false);
+                   setIsOpen(true);
+                }}
+                className="w-full text-center px-6 py-4 rounded-full glass-gold text-brand-gold font-bold text-lg"
+              >
+                Checkout Now
+              </button>
               <Link
                 href="#menu"
                 onClick={() => setIsMobileMenuOpen(false)}

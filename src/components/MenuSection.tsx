@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Plus } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
 
 type Category = "All" | "Sandwiches" | "Burgers" | "Soups" | "Rice" | "South Indian" | "Chinese" | "Noodles" | "Pizza" | "Fries" | "Beverages" | "Street Food";
@@ -181,7 +182,7 @@ export default function MenuSection() {
                         Must Try
                       </div>
                     )}
-                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
+                    <div className="absolute inset-0 bg-black/60 opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
                       <button 
                         onClick={() => addItem({ name: item.name, price: item.price, category: item.category, image: item.image })}
                         className="px-6 py-2 border-2 border-brand-gold bg-brand-base/80 backdrop-blur-sm rounded-full text-brand-gold font-bold translate-y-4 group-hover:translate-y-0 transition-transform duration-300 hover:bg-brand-gold hover:text-brand-base"
@@ -189,6 +190,13 @@ export default function MenuSection() {
                         Add to Order
                       </button>
                     </div>
+                    {/* Mobile Quick Add */}
+                    <button
+                      onClick={() => addItem({ name: item.name, price: item.price, category: item.category, image: item.image })}
+                      className="md:hidden absolute bottom-3 right-3 w-10 h-10 bg-brand-gold text-brand-base rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform z-20"
+                    >
+                      <Plus size={20} />
+                    </button>
                   </div>
                   
                   <div className="p-5 flex flex-col flex-grow">
